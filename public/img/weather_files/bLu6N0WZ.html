@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://files.mead.io/bLu6N0WZ?embed=true&branding=true&title=true -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" media="all" href="./application-a65372521a27283c237ac58dda4fda20c2ae656ab25c1b526339f0b4a85fe383.css">
+    <meta property="og:title" content="weather">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://files.mead.io/bLu6N0WZ">
+    <meta property="og:published_time" content="2018-11-15 19:54:13 UTC">
+    <meta property="og:description" content="Shared with CloudApp">
+    <meta name="twitter:card" value="summary_large_image">
+    <meta name="twitter:site" value="@cloudapp">
+    <meta property="og:image" content="https://f.v1.n0.cdn.getcloudapp.com/items/1J0Y1N1I441v1E2k3e2W/weather.png">
+    <meta name="twitter:image" value="https://f.v1.n0.cdn.getcloudapp.com/items/1J0Y1N1I441v1E2k3e2W/weather.png">
+    <link rel="canonical" href="https://files.mead.io/bLu6N0WZ">
+    <script src="./jquery.min.js.download"></script>
+    <script src="./pusher.min.js.download"></script>
+<script>
+  let getPusherChannel = function(channelName) {
+    let pushConfig = {};
+    if(channelName === undefined && false ) {
+      channelName = "current_user.pusher_channel";
+    }  else if (channelName === undefined) {
+      return null;
+    }
+
+    if( window.sessionStorage.getItem('jwt') !== null) {
+      pushConfig = {
+        authEndpoint: '/api/v4/pusher_auth',
+        auth: {
+          headers: {
+            Authorization: window.sessionStorage.getItem('jwt'),
+          },
+        }
+      };
+    } else {
+      pushConfig['cluster'] = "mt1";
+    }
+
+
+    let pusher = new Pusher("d64531b5b7c8c513c88d", pushConfig);
+    return pusher.subscribe(channelName);
+  }
+
+  let $pusher = null;
+  $(document).ready(function() {
+    $pusher = getPusherChannel();
+  });
+</script>
+
+    <meta name="robots" content="noindex">
+  </head>
+  <body class="embed">
+    <div id="#embedded-card">
+          <div class="card-header">
+    <div class="d-inline-block">
+      <p class="card-title mb-0">weather</p>
+      <a class="embed-branding-link" href="https://www.getcloudapp.com/?utm_source=embed_branding&amp;utm_medium=embed"><img src="./cloudapp-icon-c00dabfccf3d5dcc75f1551d87d4d618866291e4a236ac68453072125cfee036.png"><span>Shared with CloudApp</span></a>
+    </div>
+  </div>
+<div class="item-container">
+    <img src="./weather.png" id="image-item" v-on:ended="cta.contentDone = true" class="mx-auto d-block img-fluid" alt="weather">
+</div>
+
+    </div>
+  
+
+</body></html>

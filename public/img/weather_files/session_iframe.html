@@ -1,0 +1,24 @@
+
+<!-- saved from url=(0044)https://share.getcloudapp.com/session_iframe -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><p id="token"></p>
+<script>
+ var custom_domains = "";
+ function messageHandler(event) {
+     const { action, key } = event.data
+     if (action == 'loginCustomDomain') {
+         let token = document.getElementById("token").innerText;
+         event.source.postMessage({
+             action: 'returnData',
+             token: token,
+             domains: custom_domains
+         }, '*');
+     }
+ }
+
+ if (window.addEventListener) {
+     window.addEventListener("message", messageHandler, false);
+ } else {
+     window.attachEvent("onmessage", messageHandler);
+ }
+</script>
+</body></html>
