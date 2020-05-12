@@ -1,5 +1,3 @@
-console.log('Client side JS for Mt Vernon coC loeaded!')
-
 
 const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
